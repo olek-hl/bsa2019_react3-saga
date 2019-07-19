@@ -121,11 +121,67 @@ i.liked {
   color: #000;
 }
 
+.login_form {
+  width: 20%;
+  margin: 10px auto;
+}
+.login_form > div {
+  margin-top: 30px;
+  text-align: center;
+}
+.login_form input {
+  padding: 20px;
+  width: 100%;
+}
+
+.submit {
+  text-align: center;
+}
+.submit input {
+  cursor: pointer;
+  background: #0dc5c1;
+  color: aliceblue;
+  font-size: 1em;
+  text-transform: uppercase;
+}
+
+.submit input:hover {
+  background: #14afad;
+}
+
+.message-edit-container {
+  width: 20%;
+  margin: 10px auto;
+}
+
+.message-edit-container textarea {
+  width: 100%;
+  height: 200px;
+  padding: 30px;
+  border: 1px solid rgb(231, 231, 231);
+}
+
+.message-edit-buttons-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.message-edit-buttons-container button {
+  width: 30%;
+  margin-top: 30px;
+  padding: 20px;
+  cursor: pointer;
+  background: #0dc5c1;
+  color: aliceblue;
+  font-size: 1em;
+  text-transform: uppercase;
+}
 .loader,
 .loader:before,
 .loader:after {
   border-radius: 50%;
 }
+
 .loader {
   color: #ffffff;
   font-size: 11px;

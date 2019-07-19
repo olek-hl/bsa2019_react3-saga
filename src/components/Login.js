@@ -29,16 +29,16 @@ export class Login extends Component {
       return <p className="loader" />;
     }
     return (
-      <form onSubmit={this.onSubmit}>
-        <label>
-          Login:
+      <form onSubmit={this.onSubmit} className="login_form">
+        <div className="login">
           <input type="text" className="login-field" placeholder="login" />
-        </label>
-        <label>
-          Password:
+        </div>
+        <div className="pw">
           <input type="password" className="pw-field" placeholder="password" />
-        </label>
-        <input type="submit" value="Отправить" />
+        </div>
+        <div className="submit">
+          <input type="submit" value="Отправить" />
+        </div>
       </form>
     );
   }
