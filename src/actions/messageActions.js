@@ -45,3 +45,10 @@ export function getMessage(id) {
     payload: id
   };
 }
+
+export function editMessage(id, text) {
+  return {
+    type: "EDIT_MESSAGE_BY_ID",
+    payload: { id, text }
+  };
+}

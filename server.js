@@ -96,6 +96,31 @@ app.post("/login", function(req, res) {
   }
 });
 
+app.put("/message/:id", function(req, res, next) {
+  let newData = req.body;
+  let id = req.params.id;
+  fs.readFile("./db/messageslist.json", "utf8", function(error, data) {
+    if (error) throw error;
+    messages = JSON.parse(data);
+    let updatedMessages = messages.map(message => {
+      if (message.created_at.toString().replace(/[^0-9]/g, "") == id) {
+        message.message = req.body.text;
+      }
+      return message;
+    });
+    fs.writeFile(
+      "./db/messageslist.json",
+      JSON.stringify(updatedMessages),
+      "utf-8",
+      function(err) {
+        if (err) throw err;
+        console.log("Дані оновлено");
+      }
+    );
+    res.send(updatedMessages);
+  });
+});
+
 app.get("/", function(req, res) {
   res.sendFile(path.join(__dirname, "build", "index.html"));
 });

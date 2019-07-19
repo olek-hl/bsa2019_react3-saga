@@ -19,6 +19,15 @@ export function singeMessageReducer(state = initialState, action) {
         text: action.data.message,
         isLoading: false
       };
+    case "EDIT_MESSAGE_BY_ID":
+      return { ...state, isLoading: true };
+
+    case "MESSAGE_EDITED":
+      return {
+        ...state,
+        text: action.data.message,
+        isLoading: false
+      };
 
     default:
       return state;

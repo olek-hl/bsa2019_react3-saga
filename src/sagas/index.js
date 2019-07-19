@@ -93,6 +93,26 @@ function* getMessageByIdWatcher() {
   yield takeLatest("GET_MESSAGE_BY_ID", getMessageById);
 }
 
+function* editMessage(data) {
+  console.log(data.payload.id);
+  const json = yield fetch(`/message/${data.payload.id}`, {
+    method: "put",
+    headers: {
+      Accept: "application/json, text/plain, */*",
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify(data.payload)
+  })
+    .then(res => res.json())
+    .then(res => res);
+  console.log(json);
+  yield put({ type: "MESSAGE_EDITED", data: json });
+}
+
+function* editMessageWatcher() {
+  yield takeLatest("EDIT_MESSAGE_BY_ID", editMessage);
+}
+
 export default function* rootSaga() {
   yield all([
     fetchMessagesWatcher(),
@@ -100,6 +120,7 @@ export default function* rootSaga() {
     fetchUsersWatcher(),
     newMessageWatcher(),
     deleteMessageWatcher(),
-    getMessageByIdWatcher()
+    getMessageByIdWatcher(),
+    editMessageWatcher()
   ]);
 }

@@ -1,7 +1,11 @@
 import { Component } from "react";
 import React from "react";
 import { connect } from "react-redux";
-import { changeMessageText, getMessage } from "../actions/messageActions";
+import {
+  changeMessageText,
+  getMessage,
+  editMessage
+} from "../actions/messageActions";
 
 export class Message extends Component {
   onChange = e => {
@@ -9,6 +13,13 @@ export class Message extends Component {
     this.props.changeText(text);
   };
   onCancel = () => {
+    this.props.history.push("/chat");
+  };
+
+  onEdit = () => {
+    let id = this.props.match.params.id;
+    let text = this.props.singleMessage.text;
+    this.props.editMessageAction(id, text);
     this.props.history.push("/chat");
   };
 
@@ -26,7 +37,7 @@ export class Message extends Component {
       <div className="message-edit-container">
         <textarea value={singleMessage.text} onChange={this.onChange} />
         <div className="message-edit-buttons-container">
-          <button>Edit</button>
+          <button onClick={this.onEdit}>Edit</button>
           <button onClick={this.onCancel}>Cancel</button>
         </div>
       </div>
@@ -44,7 +55,8 @@ const mapStateToProps = store => {
 const mapDispatchToProps = dispatch => {
   return {
     changeText: text => dispatch(changeMessageText(text)),
-    fetchMessageById: id => dispatch(getMessage(id))
+    fetchMessageById: id => dispatch(getMessage(id)),
+    editMessageAction: (id, text) => dispatch(editMessage(id, text))
   };
 };
 
