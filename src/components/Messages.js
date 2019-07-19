@@ -48,9 +48,9 @@ export class Messages extends Component {
     const showLike = messageFromMe ? "like--hidden" : "like";
     return (
       <li
-        key={message.created_at.toString()}
+        key={message.created_at}
         className={className}
-        data-key={message.created_at.toString()}
+        data-key={message.created_at.toString().replace(/[^0-9]/g, "")}
       >
         <span className={showAvatar}>
           <img src={message.avatar} alt="avatar" />

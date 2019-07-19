@@ -14,6 +14,29 @@ app.get("/message", function(req, res, next) {
   });
 });
 
+app.delete("/message/:id", function(req, res, next) {
+  let idToDelete = req.params.id;
+  fs.readFile("./db/messageslist.json", "utf8", function(error, data) {
+    if (error) throw error;
+    let messages = JSON.parse(data);
+    let updatedMessages = messages.filter(
+      message =>
+        message.created_at.toString().replace(/[^0-9]/g, "") !== idToDelete
+    );
+
+    fs.writeFile(
+      "./db/messageslist.json",
+      JSON.stringify(updatedMessages),
+      "utf-8",
+      function(err) {
+        if (err) throw err;
+        console.log("Дані оновлено");
+      }
+    );
+    res.send(updatedMessages);
+  });
+});
+
 app.post("/message", function(req, res, next) {
   let reqBody = req.body;
   let bodyMessage = req.body;

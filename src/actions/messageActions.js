@@ -20,7 +20,7 @@ export function sendMessage(data) {
 
 export function removeMessage(id) {
   return {
-    type: "REMOVE_MESSAGE",
+    type: "DELETE_MESSAGE",
     payload: id
   };
 }
