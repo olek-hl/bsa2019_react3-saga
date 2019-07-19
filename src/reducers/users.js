@@ -10,10 +10,10 @@ export function usersReducer(state = initialState, action) {
     case "USERS_RECEIVED":
       return { ...state, data: action.data, isLoading: false };
 
-    case "REMOVE_USER":
+    case "DELETE_USER":
       return {
         ...state,
-        data: state.data.filter(e => e.id !== action.payload)
+        data: state.data.filter(e => e.id !== action.payload.toString())
       };
 
     default:

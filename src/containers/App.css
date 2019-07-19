@@ -176,6 +176,52 @@ i.liked {
   font-size: 1em;
   text-transform: uppercase;
 }
+
+.Users-list {
+  width: 40%;
+  margin: 0 auto;
+  list-style: none;
+}
+li.User-user {
+  padding: 20px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+
+  border-bottom: 1px solid #0dc5c1;
+}
+
+.user-fullName span:last-child {
+  margin-left: 15px;
+}
+
+.user-buttons {
+  width: 40%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.user-buttons button {
+  padding: 5px 10px;
+  cursor: pointer;
+  background: #0dc5c1;
+  color: aliceblue;
+  text-transform: uppercase;
+  border: 1px solid #ffffff;
+}
+.user-buttons button:hover {
+  background: #14afad;
+}
+
+.go-to-chat {
+  padding: 5px 10px;
+  cursor: pointer;
+  background: #0dc5c1;
+  color: aliceblue;
+  text-transform: uppercase;
+  border: 1px solid #ffffff;
+}
+
 .loader,
 .loader:before,
 .loader:after {

@@ -1,4 +1,1 @@
-[
-  { "login": "Sasha", "password": "123", "id": "1", "isAdmin": false },
-  { "login": "admin", "password": "admin", "id": "2", "isAdmin": true }
-]
+[{"login":"admin","password":"admin","id":"2","isAdmin":true},{"login":"Masha","password":"123","id":"3","isAdmin":false},{"login":"Misha","password":"111","id":"4","isAdmin":false},{"login":"Vasya","password":"222","id":"5","isAdmin":true}]

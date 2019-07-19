@@ -24,7 +24,6 @@ export class Input extends Component {
       message: text,
       marked_read: false
     };
-    console.log(data);
     this.props.submitForm(text);
     if (state.input.text.length > 0) {
       this.props.sendMessage(JSON.stringify(data));

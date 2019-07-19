@@ -9,7 +9,6 @@ function* fetchMessagesWatcher() {
 
 function* fetchUsers() {
   const json = yield fetch("/users").then(response => response.json());
-  console.log(json);
   yield put({ type: "USERS_RECEIVED", data: json });
 }
 function* fetchUsersWatcher() {
@@ -27,7 +26,6 @@ function* logUser(userData) {
   })
     .then(res => res.json())
     .then(res => res);
-  console.log(json);
   yield put({ type: "USER_LOG", data: json });
 }
 
@@ -46,7 +44,6 @@ function* newMessage(messageData) {
   })
     .then(res => res)
     .then(res => res);
-  console.log(json);
   yield put({ type: "MESSAGE_ADDED", data: json });
 }
 
@@ -55,7 +52,6 @@ function* newMessageWatcher() {
 }
 
 function* deleteMessage(id) {
-  console.log(id);
   const json = yield fetch(`/message/${id.payload}`, {
     method: "delete",
     headers: {
@@ -66,7 +62,6 @@ function* deleteMessage(id) {
   })
     .then(res => res)
     .then(res => res);
-  console.log(json);
   yield put({ type: "MESSAGE_DELETED", data: json });
 }
 
@@ -75,7 +70,6 @@ function* deleteMessageWatcher() {
 }
 
 function* getMessageById(id) {
-  console.log(id);
   const json = yield fetch(`/message/${id.payload}`, {
     method: "get",
     headers: {
@@ -85,7 +79,6 @@ function* getMessageById(id) {
   })
     .then(res => res.json())
     .then(res => res);
-  console.log(json);
   yield put({ type: "MESSAGE_RECEIVED", data: json });
 }
 
@@ -94,7 +87,6 @@ function* getMessageByIdWatcher() {
 }
 
 function* editMessage(data) {
-  console.log(data.payload.id);
   const json = yield fetch(`/message/${data.payload.id}`, {
     method: "put",
     headers: {
@@ -105,12 +97,28 @@ function* editMessage(data) {
   })
     .then(res => res.json())
     .then(res => res);
-  console.log(json);
   yield put({ type: "MESSAGE_EDITED", data: json });
 }
 
 function* editMessageWatcher() {
   yield takeLatest("EDIT_MESSAGE_BY_ID", editMessage);
+}
+
+function* deleteUser(id) {
+  const json = yield fetch(`/user/${id.payload}`, {
+    method: "delete",
+    headers: {
+      Accept: "application/text, text/plain, */*",
+      "Content-Type": "application/text"
+    }
+  })
+    .then(res => res)
+    .then(res => res);
+  yield put({ type: "USER_DELETED", data: json });
+}
+
+function* deleteUserWatcher() {
+  yield takeLatest("DELETE_USER", deleteUser);
 }
 
 export default function* rootSaga() {
@@ -121,6 +129,7 @@ export default function* rootSaga() {
     newMessageWatcher(),
     deleteMessageWatcher(),
     getMessageByIdWatcher(),
-    editMessageWatcher()
+    editMessageWatcher(),
+    deleteUserWatcher()
   ]);
 }

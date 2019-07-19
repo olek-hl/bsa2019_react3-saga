@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Messages } from "../components/Messages";
 import { Input } from "../components/Input";
-import { Login } from "../components/Login";
 import { loginUser } from "../actions/loginActions";
 import { changeText, submitForm } from "../actions/inputActions";
 import {
@@ -62,7 +61,6 @@ class App extends Component {
 }
 
 const mapStateToProps = store => {
-  console.log(store);
   return {
     login: store.login,
     messages: store.message,

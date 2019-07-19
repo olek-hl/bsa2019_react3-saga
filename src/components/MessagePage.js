@@ -46,7 +46,6 @@ export class Message extends Component {
 }
 
 const mapStateToProps = store => {
-  console.log(store);
   return {
     singleMessage: store.singleMessage
   };

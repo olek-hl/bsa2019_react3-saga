@@ -3,7 +3,7 @@ import ReactDOM from "react-dom";
 import { Provider } from "react-redux";
 import { store } from "./store/configureStore";
 import "./index.css";
-import { Route, BrowserRouter as Router, Switch } from "react-router-dom";
+import { Route, BrowserRouter as Router } from "react-router-dom";
 import App from "../src/containers/App";
 import Login from "../src/components/Login";
 import Users from "../src/components/usersList";
