@@ -31,3 +31,17 @@ export function likeMessage(id) {
     payload: id
   };
 }
+
+export function changeMessageText(text) {
+  return {
+    type: "CHANGE_MESSAGE_TEXT",
+    payload: text
+  };
+}
+
+export function getMessage(id) {
+  return {
+    type: "GET_MESSAGE_BY_ID",
+    payload: id
+  };
+}

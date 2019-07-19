@@ -1,5 +1,6 @@
 import { Component } from "react";
 import React from "react";
+import { Link } from "react-router-dom";
 
 export class Messages extends Component {
   removeMessage = e => {
@@ -46,6 +47,7 @@ export class Messages extends Component {
     const showAvatar = messageFromMe ? "avatar avatar--hidden" : "avatar";
     const showIcons = messageFromMe ? "icons" : "icons--hidden";
     const showLike = messageFromMe ? "like--hidden" : "like";
+    let key = message.created_at.toString().replace(/[^0-9]/g, "");
     return (
       <li
         key={message.created_at}
@@ -72,7 +74,9 @@ export class Messages extends Component {
               aria-hidden="true"
               onClick={this.removeMessage}
             />
-            <i className="fa fa-edit" aria-hidden="true" />
+            <Link to={`/message/${key}`}>
+              <i className="fa fa-edit" aria-hidden="true" />
+            </Link>
           </div>
           <div className={showLike}>
             <i className="fa fa-thumbs-up" onClick={this.likeMessage} />

@@ -74,12 +74,32 @@ function* deleteMessageWatcher() {
   yield takeLatest("DELETE_MESSAGE", deleteMessage);
 }
 
+function* getMessageById(id) {
+  console.log(id);
+  const json = yield fetch(`/message/${id.payload}`, {
+    method: "get",
+    headers: {
+      Accept: "application/text, text/plain, */*",
+      "Content-Type": "application/json"
+    }
+  })
+    .then(res => res.json())
+    .then(res => res);
+  console.log(json);
+  yield put({ type: "MESSAGE_RECEIVED", data: json });
+}
+
+function* getMessageByIdWatcher() {
+  yield takeLatest("GET_MESSAGE_BY_ID", getMessageById);
+}
+
 export default function* rootSaga() {
   yield all([
     fetchMessagesWatcher(),
     userLoginWatcher(),
     fetchUsersWatcher(),
     newMessageWatcher(),
-    deleteMessageWatcher()
+    deleteMessageWatcher(),
+    getMessageByIdWatcher()
   ]);
 }

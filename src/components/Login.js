@@ -2,7 +2,6 @@ import { Component } from "react";
 import React from "react";
 import { connect } from "react-redux";
 import { loginUser } from "../actions/loginActions";
-import { store } from "../store/configureStore";
 
 export class Login extends Component {
   onSubmit = e => {

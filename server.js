@@ -14,6 +14,21 @@ app.get("/message", function(req, res, next) {
   });
 });
 
+app.get("/message/:id", function(req, res, next) {
+  let id = req.params.id;
+  let message;
+  fs.readFile("./db/messageslist.json", "utf8", function(error, data) {
+    if (error) throw error;
+    messages = JSON.parse(data);
+    let message = messages.filter(message => {
+      if (message.created_at.toString().replace(/[^0-9]/g, "") == id) {
+        return message;
+      }
+    });
+    res.send(message[0]);
+  });
+});
+
 app.delete("/message/:id", function(req, res, next) {
   let idToDelete = req.params.id;
   fs.readFile("./db/messageslist.json", "utf8", function(error, data) {

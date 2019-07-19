@@ -7,6 +7,7 @@ import { Route, BrowserRouter as Router, Switch } from "react-router-dom";
 import App from "../src/containers/App";
 import Login from "../src/components/Login";
 import Users from "../src/components/usersList";
+import Message from "../src/components/MessagePage";
 import * as serviceWorker from "./serviceWorker";
 
 ReactDOM.render(
@@ -15,6 +16,7 @@ ReactDOM.render(
       <Route exact path="/" component={Login} />
       <Route path="/chat" component={App} />
       <Route path="/user" component={Users} />
+      <Route path="/message/:id" component={Message} />
     </Router>
   </Provider>,
   document.getElementById("root")
